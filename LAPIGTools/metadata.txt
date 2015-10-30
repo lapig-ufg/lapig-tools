@@ -1,0 +1,52 @@
+# This file contains metadata for your plugin. Since 
+# version 2.0 of QGIS this is the proper way to supply 
+# information about a plugin. The old method of 
+# embedding metadata in __init__.py will 
+# is no longer supported since version 2.0.
+
+# This file should be included when you package your plugin.# Mandatory items:
+
+[general]
+name=LAPIG Tool
+qgisMinimumVersion=2.0
+description=LAPIG Tools is a tool set in order to analyze geographic information and process satellite images (satellite, UAV's):
+						- Calculate area in region (Tool): In experimental character, this tool calculates for each record, the area of each feature you want.A following options:
+     					* Choose the shape folder for extracting area: Folder that contains the shapes files you want to calculate area;
+    					* Select the shape to calculate region: The shapes of the region file you want to abstract the area
+     					* Set the output shape: The shape file output (same to Select the shape to calculate region)
+     					* Unit to calculate region: Mediated drive you want to calculate the area.
+
+						The LAPIG Tools future will be inserted classification tools using the "Random Forest" algorithm among other tools to analyze Spatial and digital image processing.
+
+
+
+
+
+
+version=0.1
+author=Bernard Silva de Oliveira - LAPIG(UFG)
+email=so_geoprocessamento@yahoo.com.br
+
+about=In development
+
+tracker=https://github.com/lapig-ufg/lapig-tools
+repository=https://github.com/lapig-ufg/lapig-tools
+# End of mandatory metadata
+
+# Recommended items:
+
+# Uncomment the following line and add your changelog:
+# changelog=
+
+# Tags are comma separated with spaces allowed
+tags=
+
+homepage=https://www.lapig.iesa.ufg.br/lapig/
+category=Plugins
+icon=icon.png
+# experimental flag
+experimental=True
+
+# deprecated flag (applies to the whole plugin, not just a single version)
+deprecated=False
+

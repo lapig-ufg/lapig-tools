@@ -1,0 +1,5 @@
+<RCC>
+    <qresource prefix="/plugins/CalculateRegion" >
+        <file>icon.png</file>
+    </qresource>
+</RCC>
