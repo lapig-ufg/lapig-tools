@@ -13,6 +13,9 @@
   <property name="windowTitle">
    <string>Calculate Area in Region</string>
   </property>
+  <property name="windowOpacity">
+   <double>0.000000000000000</double>
+  </property>
   <widget class="QDialogButtonBox" name="button_box">
    <property name="geometry">
     <rect>
@@ -32,9 +35,9 @@
   <widget class="QLineEdit" name="lineEditFolder">
    <property name="geometry">
     <rect>
-     <x>230</x>
+     <x>240</x>
      <y>20</y>
-     <width>151</width>
+     <width>141</width>
      <height>20</height>
     </rect>
    </property>
@@ -42,9 +45,9 @@
   <widget class="QLineEdit" name="lineEditShapeClip">
    <property name="geometry">
     <rect>
-     <x>190</x>
+     <x>210</x>
      <y>50</y>
-     <width>191</width>
+     <width>171</width>
      <height>20</height>
     </rect>
    </property>
@@ -85,7 +88,7 @@
     </rect>
    </property>
    <property name="text">
-    <string>Buscar</string>
+    <string>Search</string>
    </property>
   </widget>
   <widget class="QPushButton" name="pushButtonShape">
@@ -98,7 +101,7 @@
     </rect>
    </property>
    <property name="text">
-    <string>Buscar</string>
+    <string>Search</string>
    </property>
   </widget>
   <widget class="QLabel" name="label_3">
@@ -117,9 +120,9 @@
   <widget class="QLineEdit" name="lineEditShapeOut">
    <property name="geometry">
     <rect>
-     <x>120</x>
+     <x>140</x>
      <y>80</y>
-     <width>261</width>
+     <width>241</width>
      <height>20</height>
     </rect>
    </property>
@@ -134,7 +137,7 @@
     </rect>
    </property>
    <property name="text">
-    <string>Buscar</string>
+    <string>Save</string>
    </property>
   </widget>
   <widget class="QComboBox" name="Units">
