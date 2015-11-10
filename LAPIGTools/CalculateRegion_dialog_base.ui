@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>AreaTileDialogBase</class>
- <widget class="QDialog" name="AreaTileDialogBase">
+ <class>CalculateRegion</class>
+ <widget class="QDialog" name="CalculateRegion">
   <property name="geometry">
    <rect>
     <x>0</x>
@@ -14,7 +14,7 @@
    <string>Calculate Area in Region</string>
   </property>
   <property name="windowOpacity">
-   <double>0.000000000000000</double>
+   <double>1.000000000000000</double>
   </property>
   <widget class="QDialogButtonBox" name="button_box">
    <property name="geometry">
@@ -169,7 +169,7 @@
   <connection>
    <sender>button_box</sender>
    <signal>accepted()</signal>
-   <receiver>AreaTileDialogBase</receiver>
+   <receiver>CalculateRegion</receiver>
    <slot>accept()</slot>
    <hints>
     <hint type="sourcelabel">
@@ -185,7 +185,7 @@
   <connection>
    <sender>button_box</sender>
    <signal>rejected()</signal>
-   <receiver>AreaTileDialogBase</receiver>
+   <receiver>CalculateRegion</receiver>
    <slot>reject()</slot>
    <hints>
     <hint type="sourcelabel">
