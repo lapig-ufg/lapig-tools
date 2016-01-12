@@ -1,5 +1,7 @@
 <RCC>
-    <qresource prefix="/plugins/CalculateRegion" >
-        <file>icon.png</file>
+    <qresource prefix="plugins/LAPIGTools/" >
+        <file>icons/CalculateRegion.png</file>
+        <file>icons/KappaIndex.png</file>
+    	<file>icons/StatisticsImage.png</file>
     </qresource>
 </RCC>

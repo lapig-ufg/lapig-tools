@@ -1,14 +1,14 @@
 # -*- coding: utf-8 -*-
 """
 /***************************************************************************
- CalculateRegion
+ KappaIndexDialog
                                  A QGIS plugin
- This tool is create from Geoprocessind and Image Processing Laboratory from University of Goias (Brazil)
+ Calculate kappa index from classification images
                              -------------------
-        begin                : 2015-10-30
-        copyright            : (C) 2015 by Bernard Silva de Oliveira - LAPIG/UFG
-        email                : so_geoprocessamento@yahoo.com.br
+        begin                : 2015-11-04
         git sha              : $Format:%H$
+        copyright            : (C) 2015 by Bernard Silva
+        email                : so_geoprocessamento@yahoo.com.br
  ***************************************************************************/
 
 /***************************************************************************
@@ -19,18 +19,23 @@
  *   (at your option) any later version.                                   *
  *                                                                         *
  ***************************************************************************/
- This script initializes the plugin, making it known to QGIS.
 """
 
+import os
 
-# noinspection PyPep8Naming
-def classFactory(iface):  # pylint: disable=invalid-name
-    """Load CalculateRegion class from file CalculateRegion.
+from PyQt4 import QtGui, uic
 
-    :param iface: A QGIS interface instance.
-    :type iface: QgsInterface
-    """
-    #
-    from LapigTools import LapigTools
-    return LapigTools(iface)
-    
+FORM_CLASS, _ = uic.loadUiType(os.path.join(
+    os.path.dirname(__file__), 'KappaIndex_dialog_base.ui'))
+
+
+class KappaIndexDialog(QtGui.QDialog, FORM_CLASS):
+    def __init__(self, parent=None):
+        """Constructor."""
+        super(KappaIndexDialog, self).__init__(parent)
+        # Set up the user interface from Designer.
+        # After setupUI you can access any designer object by doing
+        # self.<objectname>, and you can use autoconnect slots - see
+        # http://qt-project.org/doc/qt-4.8/designer-using-a-ui-file.html
+        # #widgets-and-dialogs-with-auto-connect
+        self.setupUi(self)
