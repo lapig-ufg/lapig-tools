@@ -9,12 +9,12 @@
 [general]
 name=LAPIG Tool
 qgisMinimumVersion=2.0
-description=LAPIG Tools is a tool set in order to analyze geographic information and process satellite images (satellite, UAV's).First tool is Calculate area in region (experimental) with objectivecalculates for each record, the area of each feature you want.
+description=LAPIG Tools is a tool set in order to analyze geographic information and process satellite images (satellite, UAV's).In the version 0.2.0 were added tools:Kappa Index and Statistics Image in batch
 
 
 
 
-version=0.1.1
+version=0.2.0
 author=Bernard Silva de Oliveira - LAPIG(UFG)
 email=so_geoprocessamento@yahoo.com.br
 

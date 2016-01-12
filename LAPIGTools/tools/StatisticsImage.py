@@ -174,7 +174,7 @@ class StatisticsImage(GenericTool):
 	def __init__(self,iface):
 		GenericTool.__init__(self, iface)
 		
-		self.labelName = "Statistics Image in Batch"
+		self.labelName = "Statistics Image in batch"
 		self.dlg = StatisticsImageDialog()
 		
 		self.dlg.lineEditFolder.clear()
