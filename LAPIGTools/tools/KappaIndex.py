@@ -3,11 +3,10 @@
 /***************************************************************************
  KappaIndex
 								 A QGIS plugin
- Calculate kappa index from classification images
+ Calculate kappa index
 							  -------------------
-		begin                : 2015-11-04
+		begin                : 2015-10-25
 		git sha              : $Format:%H$
-		copyright            : (C) 2015 by Bernard Silva
 		email                : so_geoprocessamento@yahoo.com.br
  ***************************************************************************/
 
@@ -137,38 +136,38 @@ class KappaIndex(GenericTool):
 				Class.append(str(fld[Field2]))
 				Class = list(set(Class))
 				Class.sort()
-#
+
 				progressBar.setValue(count)
 				count +=1
 
 
-			TC = len(Class)
+			TotalClasses = len(Class)
 			
 			# Create a matrix Class, adding a row/column for the labels, and one for the totals.
-			Labels = TC + 2
+			Eixos = TotalClasses + 2
 			
-			matrixi = [[0 for col in range(Labels)] for row in range(Labels)]
-			matrixi[0][0] = "#"
-			matrixi[0][Labels-1] = Field2
-			matrixi[Labels-1][0] = Field1
-			matrixi[Labels-1][Labels-1] = Total_obs
-			while x < TC:
-				matrixi[x+1][0] = Class[x]
-				matrixi[0][x+1] = Class[x]
+			matrixKappa = [[0 for col in range(Eixos)] for row in range(Eixos)]
+			matrixKappa[0][0] = "#"
+			matrixKappa[0][Eixos-1] = Field2
+			matrixKappa[Eixos-1][0] = Field1
+			matrixKappa[Eixos-1][Eixos-1] = Total_obs
+			while x < TotalClasses:
+				matrixKappa[x+1][0] = Class[x]
+				matrixKappa[0][x+1] = Class[x]
 				x += 1
 			
 			x = 0
 			for sample in range(Total_obs):
 				Obs_temp1 = aValues1[sample]
 				Obs_temp2 = aValues2[sample]
-				for col in range(TC):
-					for row in range(TC):
-						col_temp = matrixi[col-col][row+1]
-						row_temp = matrixi[col+1][row-row]
+				for col in range(TotalClasses):
+					for row in range(TotalClasses):
+						col_temp = matrixKappa[col-col][row+1]
+						row_temp = matrixKappa[col+1][row-row]
 						if ((col_temp == aValues2[sample]) and (row_temp == aValues1[sample])):
-							matrixi[col+1][row+1] += 1
-							matrixi[Labels-1][row+1] += 1
-							matrixi[col+1][Labels-1] += 1
+							matrixKappa[col+1][row+1] += 1
+							matrixKappa[Eixos-1][row+1] += 1
+							matrixKappa[col+1][Eixos-1] += 1
 			
 			
 			# Find the chance agreement
@@ -177,21 +176,21 @@ class KappaIndex(GenericTool):
 			chance2 = 0.00
 			per_chance = ""
 			per_chance2 = ""
-			for row in range(TC):
-					chance1 = float(matrixi[Labels-1][row+1])/float(matrixi[Labels-1][Labels-1])
+			for row in range(TotalClasses):
+					chance1 = float(matrixKappa[Eixos-1][row+1])/float(matrixKappa[Eixos-1][Eixos-1])
 					per_chance = " (" + str(round(chance1*100,1)) + "%)"
-					matrixi[Labels-1][row+1] = str(matrixi[Labels-1][row+1]) + str(per_chance)                                                    
-					chance2 = float(matrixi[row+1][Labels-1])/float(matrixi[Labels-1][Labels-1])
+					matrixKappa[Eixos-1][row+1] = str(matrixKappa[Eixos-1][row+1]) + str(per_chance)                                                    
+					chance2 = float(matrixKappa[row+1][Eixos-1])/float(matrixKappa[Eixos-1][Eixos-1])
 					per_chance2 = " (" + str(round(chance2*100,1)) + "%)"
-					matrixi[row+1][Labels-1] = str(matrixi[row+1][Labels-1]) + str(per_chance2)
+					matrixKappa[row+1][Eixos-1] = str(matrixKappa[row+1][Eixos-1]) + str(per_chance2)
 					chance_temp = chance1*chance2
 					Chance_agree += chance_temp
 			
 			
 			# Find the observed agreement      
 			Observed_total = 0.0
-			for i in range(TC):
-				Observed_total += matrixi[i+1][i+1]
+			for i in range(TotalClasses):
+				Observed_total += matrixKappa[i+1][i+1]
 			
 			Observed_agreement = (Observed_total/Total_obs)
 			
@@ -208,7 +207,7 @@ class KappaIndex(GenericTool):
 			mat_kappa.writelines('\n')
 
 			#Generate Kappa Matrix
-			for line in matrixi:
+			for line in matrixKappa:
 				for elements in line:
 					mat_kappa.writelines(str(elements)+'\t')
 				mat_kappa.writelines('\n')		

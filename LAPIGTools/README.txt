@@ -1,10 +1,5 @@
 Plugin Builder Results
 
-Your plugin CalculateRegion was created in:
-    C:\Users\bernard.oliveira\Documents\QGISPlugin\Plugins\TestePlugin\CalculateRegion
-
-Your QGIS plugin directory is located at:
-    C:/Users/bernard.oliveira/.qgis2/python/plugins
 
 What's Next:
 

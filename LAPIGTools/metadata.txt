@@ -9,12 +9,12 @@
 [general]
 name=LAPIG Tool
 qgisMinimumVersion=2.0
-description=LAPIG Tools is a tool set in order to analyze geographic information and process satellite images (satellite, UAV's).In the version 0.2.0 were added tools:Kappa Index and Statistics Image in batch
+description=LAPIG Tools is a tool set in order to analyze geographic information and process satellite images (satellite, UAV's).In the version 0.3.0 were added tools:Saviztky Golay Filter
 
 
 
 
-version=0.2.0
+version=0.3.0
 author=Bernard Silva de Oliveira - LAPIG(UFG)
 email=so_geoprocessamento@yahoo.com.br
 

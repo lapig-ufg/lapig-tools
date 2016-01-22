@@ -25,8 +25,6 @@ from PyQt4.QtGui import QAction, QIcon, QFileDialog, QProgressBar, QMessageBox
 import PyQt4.QtGui
 from PyQt4.QtCore import *
 
-from CalculateRegion_dialog import CalculateRegionDialog
-
 import os.path
 import qgis.utils
 

@@ -34,8 +34,7 @@ from osgeo import ogr, osr
 
 
 class Worker(QObject):
-	'''Example worker for calculating the total area of all features in a layer'''
-	
+		
 	def __init__(self, ExtrairShape, CalcShape, OutShape, Coordref, TypeUnits):
 			QObject.__init__(self)
 			self.killed = False
@@ -48,14 +47,12 @@ class Worker(QObject):
 			
 
 	def runCalc(self):
-			listShapes = glob.glob(os.path.join(self.ExtrairShape,'*.shp'))
+			
+			listShapes = sorted(glob.glob(os.path.join(self.ExtrairShape,'*.shp')))
 			drv = ogr.GetDriverByName('ESRI ShapeFile')
-			
 			logfile = os.path.join(os.path.dirname(self.OutShape),"LogErros.txt")
-			
 			logerrortxt = open(logfile,"w")
-			
-			
+						
 			#Generate output file
 			shapeIn = drv.Open(self.CalcShape,0)
 			Layers = shapeIn.GetLayer(0)
@@ -132,7 +129,6 @@ class Worker(QObject):
 							geom2 = feat2.GetGeometryRef()
 							
 							try:
-							#if geom2.IsValid():
 								if geom2.Intersects(geom1):
 									
 									if not geom2.Within(geom1):
@@ -149,7 +145,6 @@ class Worker(QObject):
 									AreaDes += self.CalcArea(self.TypeUnits,geom2.GetArea())
 									
 							except:
-							#else:
 								DicError[os.path.basename(k)] += str(feat2.GetFID())+' '
 							feat2.Destroy()
 							feat2 = olayer.GetNextFeature()
@@ -200,7 +195,7 @@ class CalculateRegion(GenericTool):
 	def __init__(self, iface):
 		GenericTool.__init__(self, iface)
 		
-		self.labelName = "Calculate Area in Region"
+		self.labelName = "Calculate Area in Region - Teste"
 		self.dlg = CalculateRegionDialog()
 		
 		self.dlg.lineEditShapeClip.clear()
