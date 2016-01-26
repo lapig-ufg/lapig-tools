@@ -49,71 +49,49 @@ class Worker(QObject):
 			self.nbands = nbands 
 	
 	def StatsImage(self):		
-			tex = open(r'/home/bernard/Documentos/QA_Tools/Statistics_Image/LANDSAT5/Results/texto.txt','w')
+			
+			outWriter = gdal.Open(self.OutImage,gdal.GA_Update) 
 			for i in xrange(self.YSizeStart,self.YSizeEnd):
 				
 				print i
-				aCom = numpy.zeros((self.nbands,1,self.Xsize),dtype = numpy.float32)
-				aCom[:,:] = None
+				aCom = numpy.zeros((self.nbands,1,self.Xsize),dtype = numpy.float16)
 				for j in xrange(0,self.nbands):
-					
 					GetImages = gdal.Open(self.listImageIn[j],gdal.GA_ReadOnly)
-					band = GetImages.GetRasterBand(1).ReadAsArray(0,i,self.Xsize,1)
-					aCom[j] = band
-					band = None
-					#if not noDataDefault == None:
-					#	aCom[j] = numpy.where(aCom[j] == noDataDefault,None,aCom[j])
+					aCom[j] = GetImages.GetRasterBand(1).ReadAsArray(0,i,self.Xsize,1)
+							
+				if len(self.NoData) > 0:
+					aCom = numpy.where(aCom == float(self.NoData),None,aCom)													 
 					
-				#if not self.NoData == '':
-				#	aCom = numpy.where(aCom == float(self.NoData),None,aCom)													 
-				print aCom.shape
 				aCom = self.CalcStats(self.Stats,aCom)																			
-				tex.writelines(str(aCom)+'\n')
-				self.OutImage.GetRasterBand(1).WriteArray(aCom[:,:],0,i)					
+				outWriter.GetRasterBand(1).WriteArray(aCom,0,i)					
 				
 				if not self.NoData == '':
-					self.OutImage.GetRasterBand(1).SetNoDataValue(float(self.NoData))
+					outWriter.GetRasterBand(1).SetNoDataValue(float(self.NoData))
 								
 				aCom = None
 				self.progress.emit()					
-			tex.close()							
+									
 			self.finished.emit()
 					
 	def CalcStats(self,stype,array):
 		
 		if stype == 0:
-			#if len(noData) > 0:
-			#	img = numpy.nanstd(array,axis=0)
-			#else:
-				img = numpy.std(array,axis=0)
+			img = numpy.std(array,axis=0)
+		
 		elif stype == 1:
-			#if len(noData) > 0:
-			#	img = numpy.nanmax(array,axis=0)
-			#else:
-				img = numpy.max(array,axis=0)
+			img = numpy.max(array,axis=0)
 		
 		elif stype == 2:
-			#if len(noData) > 0:	
-			#	img = numpy.nanmean(array,axis=0)
-			#else:
-				img = numpy.mean(array,axis=0)
+			img = numpy.mean(array,axis=0)
 		
 		elif stype == 3:
-			#if len(noData) > 0:	
-			#	img = numpy.nanvar(array,axis=0)
-			#else:
-				img = numpy.var(array,axis=0)
+			img = numpy.var(array,axis=0)
+		
 		elif stype == 4:
-			#if len(noData) > 0:	
-			#	img = numpy.nanmin(array,axis=0)
-			#if:
-				img = numpy.min(array,axis=0)
+			img = numpy.min(array,axis=0)
 		
 		elif stype == 5:
-			#if len(noData) > 0:	
-			#	img = numpy.nansum(array,axis=0)
-			#if:
-				img = numpy.sum(array,axis=0)
+			img = numpy.sum(array,axis=0)
 		
 		return img
 	
@@ -133,7 +111,7 @@ class StatisticsImage(GenericTool):
 	def __init__(self,iface):
 		GenericTool.__init__(self, iface)
 		
-		self.labelName = "Statsistics Image in Batch - Teste"
+		self.labelName = "Statsistics Image in Batch"
 		self.dlg = StatisticsImageDialog()
 		
 		self.dlg.lineEditFolder.clear()
@@ -151,7 +129,6 @@ class StatisticsImage(GenericTool):
 		self.globalYCount = self.count
 		perc = int(100.00*(float(self.globalYCount)/float(self.YSize)))					
 		self.progressBar.setValue(perc)
-
 
 
 	def createProgressBar(self):
@@ -205,7 +182,7 @@ class StatisticsImage(GenericTool):
 						YSizeEnd = self.YSize
 
 					print(YSizeStart, YSizeEnd, ySizeInc)
-					self.startWorker(listImages,Stats,ImageOut,Nodata,YSizeStart,YSizeEnd,Xsize,NumberOfImages)
+					self.startWorker(listImages,Stats,outImage,Nodata,YSizeStart,YSizeEnd,Xsize,NumberOfImages)
 			else:
 				QMessageBox.warning(qgis.utils.iface.mainWindow(),"Statistic Image in Batch","Error in the images. Please, check the error log on:"+'\n'+os.path.join(os.path.dirname(inFolder),"LogErros.txt"))		
 		else:
@@ -229,7 +206,7 @@ class StatisticsImage(GenericTool):
 			iSta = self.dlg.comboBoxStast.currentIndex()
 			self.oImage = self.dlg.lineEditOutImage.text()
 			NoData = self.dlg.lineEditNoData.text()
-			
+			print NoData
 			if len(NoData) > 0:
 				NoData = float(NoData)
 			

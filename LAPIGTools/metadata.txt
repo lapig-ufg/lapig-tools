@@ -14,7 +14,7 @@ description=LAPIG Tools is a tool set in order to analyze geographic information
 
 
 
-version=0.3.0
+version=0.3.1
 author=Bernard Silva de Oliveira - LAPIG(UFG)
 email=so_geoprocessamento@yahoo.com.br
 
