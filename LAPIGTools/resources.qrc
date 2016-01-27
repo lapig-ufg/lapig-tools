@@ -3,5 +3,6 @@
         <file>icons/CalculateRegion.png</file>
         <file>icons/KappaIndex.png</file>
     	<file>icons/StatisticsImage.png</file>
+    	<file>icons/SavitzkyGolayFilter.png</file>
     </qresource>
 </RCC>

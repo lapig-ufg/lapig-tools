@@ -195,7 +195,7 @@ class CalculateRegion(GenericTool):
 	def __init__(self, iface):
 		GenericTool.__init__(self, iface)
 		
-		self.labelName = "Calculate Area in Region - Teste"
+		self.labelName = "Calculate Area in Region"
 		self.dlg = CalculateRegionDialog()
 		
 		self.dlg.lineEditShapeClip.clear()
