@@ -92,7 +92,8 @@ class Worker(QObject):
 				if not os.path.exists(m[0:-4]+".qix"):
 					nametale = os.path.basename(m)[0:-4]
 					os.system('ogrinfo -sql "CREATE SPATIAL INDEX ON '+nametale+'"'+" "+str(m))
-				FieldName = str(os.path.basename(m)[len(os.path.basename(m))-13:len(os.path.basename(m))-4])
+				name = str(os.path.basename(m))
+				FieldName = filter(str.isdigit,name)
 				field = ogr.FieldDefn(FieldName,ogr.OFTReal)
 				field.SetWidth(20)    
 				field.SetPrecision(6)

@@ -1,9 +1,9 @@
 # -*- coding: utf-8 -*-
 """
 /***************************************************************************
- KappaIndex
+ Statistics Image In Batch
 								 A QGIS plugin
- Calculate kappa index from classification images
+ Calculate statistics from folder images
 							  -------------------
 		begin                : 2015-11-04
 		git sha              : $Format:%H$
@@ -34,8 +34,7 @@ import qgis.utils
 import utils
 
 class Worker(QObject):
-	'''Example worker for calculating the total area of all features in a layer'''
-	
+		
 	def __init__(self, Folder, Stats, OutImage,NoData):
 			QObject.__init__(self)
 			self.killed = False
