@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>422</width>
+    <width>406</width>
     <height>126</height>
    </rect>
   </property>
@@ -16,7 +16,7 @@
   <widget class="QDialogButtonBox" name="buttonBox">
    <property name="geometry">
     <rect>
-     <x>70</x>
+     <x>50</x>
      <y>100</y>
      <width>341</width>
      <height>21</height>
@@ -29,123 +29,107 @@
     <set>QDialogButtonBox::Cancel|QDialogButtonBox::Ok</set>
    </property>
   </widget>
-  <widget class="QLineEdit" name="lineEditOutImages">
+  <widget class="QWidget" name="">
    <property name="geometry">
     <rect>
-     <x>160</x>
-     <y>40</y>
-     <width>151</width>
+     <x>12</x>
+     <y>12</y>
+     <width>381</width>
      <height>21</height>
     </rect>
    </property>
+   <layout class="QHBoxLayout" name="horizontalLayout">
+    <item>
+     <widget class="QLabel" name="label_3">
+      <property name="text">
+       <string>Input Folder Images</string>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <widget class="QLineEdit" name="lineEditInImages"/>
+    </item>
+    <item>
+     <widget class="QPushButton" name="InButton">
+      <property name="text">
+       <string>Choose</string>
+      </property>
+     </widget>
+    </item>
+   </layout>
   </widget>
-  <widget class="QLineEdit" name="lineEditInImages">
+  <widget class="QWidget" name="">
    <property name="geometry">
     <rect>
-     <x>150</x>
-     <y>10</y>
-     <width>161</width>
+     <x>12</x>
+     <y>42</y>
+     <width>381</width>
      <height>21</height>
     </rect>
    </property>
+   <layout class="QHBoxLayout" name="horizontalLayout_2">
+    <item>
+     <widget class="QLabel" name="label_4">
+      <property name="text">
+       <string>Output Folder Images</string>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <widget class="QLineEdit" name="lineEditOutImages"/>
+    </item>
+    <item>
+     <widget class="QPushButton" name="outButton">
+      <property name="text">
+       <string>Choose</string>
+      </property>
+     </widget>
+    </item>
+   </layout>
   </widget>
-  <widget class="QLabel" name="label">
+  <widget class="QWidget" name="">
    <property name="geometry">
     <rect>
-     <x>160</x>
-     <y>70</y>
-     <width>121</width>
-     <height>20</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>Polynomial Order</string>
-   </property>
-  </widget>
-  <widget class="QComboBox" name="comboBoxPoly">
-   <property name="geometry">
-    <rect>
-     <x>280</x>
-     <y>70</y>
-     <width>51</width>
+     <x>12</x>
+     <y>72</y>
+     <width>171</width>
      <height>21</height>
     </rect>
    </property>
+   <layout class="QHBoxLayout" name="horizontalLayout_3">
+    <item>
+     <widget class="QLabel" name="label_2">
+      <property name="text">
+       <string>Window Size</string>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <widget class="QComboBox" name="comboBoxWindow"/>
+    </item>
+   </layout>
   </widget>
-  <widget class="QLabel" name="label_2">
+  <widget class="QWidget" name="">
    <property name="geometry">
     <rect>
-     <x>10</x>
-     <y>70</y>
-     <width>91</width>
-     <height>20</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>Window Size</string>
-   </property>
-  </widget>
-  <widget class="QComboBox" name="comboBoxWindow">
-   <property name="geometry">
-    <rect>
-     <x>100</x>
-     <y>70</y>
-     <width>51</width>
+     <x>192</x>
+     <y>72</y>
+     <width>201</width>
      <height>21</height>
     </rect>
    </property>
-  </widget>
-  <widget class="QLabel" name="label_3">
-   <property name="geometry">
-    <rect>
-     <x>10</x>
-     <y>10</y>
-     <width>141</width>
-     <height>20</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>Input Folder Images</string>
-   </property>
-  </widget>
-  <widget class="QLabel" name="label_4">
-   <property name="geometry">
-    <rect>
-     <x>10</x>
-     <y>40</y>
-     <width>151</width>
-     <height>20</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>Output Folder Images</string>
-   </property>
-  </widget>
-  <widget class="QPushButton" name="InButton">
-   <property name="geometry">
-    <rect>
-     <x>320</x>
-     <y>10</y>
-     <width>97</width>
-     <height>21</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>Choose</string>
-   </property>
-  </widget>
-  <widget class="QPushButton" name="outButton">
-   <property name="geometry">
-    <rect>
-     <x>320</x>
-     <y>40</y>
-     <width>97</width>
-     <height>21</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>Choose</string>
-   </property>
+   <layout class="QHBoxLayout" name="horizontalLayout_4">
+    <item>
+     <widget class="QLabel" name="label">
+      <property name="text">
+       <string>Polynomial Order</string>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <widget class="QComboBox" name="comboBoxPoly"/>
+    </item>
+   </layout>
   </widget>
  </widget>
  <resources/>

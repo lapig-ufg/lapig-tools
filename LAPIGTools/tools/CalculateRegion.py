@@ -163,7 +163,8 @@ class Worker(QObject):
 			
 			CountErros = 0		
 			for key, values in DicError.iteritems():
-				countpolygon = len(DicError[key])
+				erros = DicError[key]
+				countpolygon = len(erros.split(' '))-1
 				if countpolygon > 0:	
 					logerrortxt.writelines(str(key)+'\n')
 					logerrortxt.writelines('FIDs:'+str(DicError[key])+'\n')

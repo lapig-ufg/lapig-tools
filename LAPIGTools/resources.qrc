@@ -4,5 +4,6 @@
         <file>icons/KappaIndex.png</file>
     	<file>icons/StatisticsImage.png</file>
     	<file>icons/SavitzkyGolayFilter.png</file>
+    	<file>icons/HagensFilter.png</file>
     </qresource>
 </RCC>

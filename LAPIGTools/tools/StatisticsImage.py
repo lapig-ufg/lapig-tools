@@ -185,7 +185,9 @@ class StatisticsImage(GenericTool):
 	def OutputImage(self):        
 			filters = "TIFF (*.tif *.tiff)"
 			oImage= QFileDialog.getSaveFileName(self.dlg,'Output Image','',filters)
-			self.dlg.lineEditOutImage.setText(oImage+".tif")				
+			if not oImage == '':
+				oImage = oImage.replace(".tif","").replace(".tiff","")
+				self.dlg.lineEditOutImage.setText(oImage+".tif")				
 						
 	
 	#Function Start thread processing

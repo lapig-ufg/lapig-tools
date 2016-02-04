@@ -13,7 +13,7 @@ import utils
 from scipy.signal import savgol_filter
 
 class Worker(QObject):
-	'''Example worker for calculating the total area of all features in a layer'''
+	
 	
 	def __init__(self, inFolder,outFolder,WindowSize,Polynomial):
 			QObject.__init__(self)
@@ -26,7 +26,6 @@ class Worker(QObject):
 	
 	def SavitzkyGolayFilter(self):		
 
-		if self.WindowSize > self.Polynomial:	
 			#Input files
 			source = os.path.join(self.inFolder,"*.tif")
 			desti = self.outFolder
@@ -63,8 +62,9 @@ class Worker(QObject):
 					
 					for k in xrange(Xsize):
 						signal = aCom[numpy.array(range(NumberOfImages)),0,k]
-						savGol = savgol_filter(signal,self.WindowSize,self.Polynomial)
-						aCom[numpy.array(range(NumberOfImages)),0,k] = savGol																		
+						if numpy.max(signal) != numpy.min(signal):
+							savGol = savgol_filter(signal,self.WindowSize,self.Polynomial)
+							aCom[numpy.array(range(NumberOfImages)),0,k] = savGol																		
 							
 					for l in xrange(len(listImages)):						
 						listImageOut[l].GetRasterBand(1).WriteArray(aCom[l],0,i)					
@@ -75,8 +75,7 @@ class Worker(QObject):
 				self.finished.emit(0)
 			else:
 				self.finished.emit(BadImages)
-		else:
-			self.finished.emit(-1)
+		
 	def kill(self):
 			self.killed = True			
 		
@@ -123,9 +122,11 @@ class SavitzkyGolayFilter(GenericTool):
 			oFolder = self.dlg.lineEditOutImages.text()
 			Win = ListWin[self.dlg.comboBoxWindow.currentIndex()]
 			Poly = ListPoly[self.dlg.comboBoxPoly.currentIndex()]
-			#if Win > Poly:
-			self.startWorker(iFolder, oFolder, Win,Poly)
-			#else:
+			if Win > Poly:
+					self.startWorker(iFolder, oFolder, Win,Poly)	
+			else:
+					QMessageBox.warning(qgis.utils.iface.mainWindow(),"Savitzky Golay Filter","Polynomial Order must be less than window size ")
+			
 
 	#Function input folder images
 	def InputFolder(self):        
@@ -177,8 +178,6 @@ class SavitzkyGolayFilter(GenericTool):
 			
 		if value == 0:
 			QMessageBox.information(qgis.utils.iface.mainWindow(),"Savitzky Golay Filter","Processing sucessfully...")	
-		elif value == -1:
-			QMessageBox.warning(qgis.utils.iface.mainWindow(),"Savitzky Golay Filter","Polynomial Order must be less than window size ")
 		else:
 			QMessageBox.warning(qgis.utils.iface.mainWindow(),"Savitzky Golay Filter","Error in the images. Please, check the error log on:"+'\n'+os.path.join(self.dlg.lineEditInImages.text(),"LogErros.txt"))	
 

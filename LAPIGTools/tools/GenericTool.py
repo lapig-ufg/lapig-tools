@@ -21,7 +21,7 @@
  ***************************************************************************/
 """
 from PyQt4.QtCore import QSettings, QTranslator, qVersion, QCoreApplication,QThread, QObject, pyqtSignal,SIGNAL
-from PyQt4.QtGui import QAction, QIcon, QFileDialog, QProgressBar, QMessageBox
+from PyQt4.QtGui import QAction, QIcon, QFileDialog, QProgressBar, QMessageBox,QMenu
 import PyQt4.QtGui
 from PyQt4.QtCore import *
 
@@ -31,10 +31,11 @@ import qgis.utils
 class GenericTool():
 	
 	def __init__(self, iface):
-		self.toolLabel = 'LAPIG Tools'
+		self.toolLabel = ''
 		self.toolName = self.__class__.__name__
-
+		
 		self.iface = iface
+		
 		
 		self.plugin_dir = os.path.dirname(__file__)
 		self.icon_path = ":/plugins/LAPIGTools/icons/" + self.toolName + ".png"
@@ -54,11 +55,9 @@ class GenericTool():
 
 	def initGui(self):
 		self.obtainAction = QAction(QIcon(self.icon_path),QCoreApplication.translate(self.toolLabel,"&"+self.labelName), self.iface.mainWindow())
-		self.iface.addPluginToMenu(self.toolLabel, self.obtainAction)
-		self.iface.addToolBarIcon(self.obtainAction)		
-		
 		QObject.connect(self.obtainAction, SIGNAL("triggered()"), self.run)
-
+		return self.obtainAction,self.labelName
+		
 	def unload(self):
-		self.iface.removePluginMenu(self.toolLabel, self.obtainAction)
+		#self.iface.removePluginMenu(self.toolLabel, self.obtainAction)
 		self.iface.removeToolBarIcon(self.obtainAction)
